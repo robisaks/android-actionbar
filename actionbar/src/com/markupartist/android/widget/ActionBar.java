@@ -24,6 +24,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -72,12 +73,12 @@ public class ActionBar extends RelativeLayout implements OnClickListener {
             setTitle(title);
         }
         a.recycle();
-    }
+    } 
 
     public void setHomeAction(Action action) {
         mHomeBtn.setOnClickListener(this);
         mHomeBtn.setTag(action);
-        mHomeBtn.setImageResource(action.getDrawable());
+        mHomeBtn.setImageDrawable(action.getDrawable());
         mHomeLayout.setVisibility(View.VISIBLE);
     }
 
@@ -181,7 +182,7 @@ public class ActionBar extends RelativeLayout implements OnClickListener {
 
         ImageButton labelView =
             (ImageButton) view.findViewById(R.id.actionbar_item);
-        labelView.setImageResource(action.getDrawable());
+        labelView.setImageDrawable(action.getDrawable());
 
         view.setTag(action);
         view.setOnClickListener(this);
@@ -199,19 +200,19 @@ public class ActionBar extends RelativeLayout implements OnClickListener {
      * show.
      */
     public interface Action {
-        public int getDrawable();
+        public Drawable getDrawable();
         public void performAction(View view);
     }
 
     public static abstract class AbstractAction implements Action {
-        final private int mDrawable;
+        final private Drawable mDrawable;
 
-        public AbstractAction(int drawable) {
+        public AbstractAction(Drawable drawable) {
             mDrawable = drawable;
         }
 
         @Override
-        public int getDrawable() {
+        public Drawable  getDrawable() {
             return mDrawable;
         }
     }
@@ -220,7 +221,7 @@ public class ActionBar extends RelativeLayout implements OnClickListener {
         private Context mContext;
         private Intent mIntent;
 
-        public IntentAction(Context context, Intent intent, int drawable) {
+        public IntentAction(Context context, Intent intent, Drawable drawable) {
             super(drawable);
             mContext = context;
             mIntent = intent;
