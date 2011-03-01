@@ -26,6 +26,7 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -183,7 +184,8 @@ public class ActionBar extends RelativeLayout implements OnClickListener {
         ImageButton labelView =
             (ImageButton) view.findViewById(R.id.actionbar_item);
         labelView.setImageDrawable(action.getDrawable());
-
+        labelView.setMinimumWidth( action.getDrawable().getBounds().width() );
+        Log.i("XPENSER", "action width: "+action.getDrawable().getBounds().width());
         view.setTag(action);
         view.setOnClickListener(this);
         return view;

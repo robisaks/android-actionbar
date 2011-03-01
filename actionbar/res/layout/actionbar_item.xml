@@ -20,4 +20,5 @@
     android:layout_centerVertical="true"
     android:singleLine="true"
     android:visibility="visible"
+    android:layout_width="wrap_content"
     />
